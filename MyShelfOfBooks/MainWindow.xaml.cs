@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,17 @@ namespace MyShelfOfBooks
     /// </summary>
     public partial class MainWindow : Window
     {
+        DataBase db = new DataBase();
         public MainWindow()
         {
             InitializeComponent();
+            db.CreateStrConnection();
+            db = new DataBase();
+        }
+        //DataBase = db;
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            db.AddBook(tb1.Text, tb2.Text, tb3.Text, tb4.Text);
         }
     }
 }
